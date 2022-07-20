@@ -1,0 +1,50 @@
+﻿@page
+@model RazerPizzeria.Pages.PizzaModel
+@{
+}
+
+<div class="text-center">
+    <div>
+        <h1 class="display-4 text-capitalize text-black">Our great selection of Pizzas</h1>
+        <h4>Choose one, or try our Pizza Builder! Then Order and Done!</h4>
+        <h4>No need to give any of your details</h4>
+        <h4>We already know everything!</h4>
+        <p class="smallText"><i>Only one pizza per order.</i></p>
+    </div>
+
+    <div class="container">
+        <div class="row mt-0">
+            <div class="col-12 mb-3">
+                <div class="w-100 row makeYourOwnDiv">
+                    <div class="col-4">
+                        <img src="~/images/Pizzas/Create.png" class="w-100 rotate" />
+                    </div>
+                    <div class="col-8 align-items-center">
+                        <div class="align-middle makeYourOwnText">
+                            <h3 style="text-align:left;">Create your own Pizza</h3>
+                            <p style="text-align:left">&#127829;Make your Pizza with our PizzaMaker&#127829;</p>
+                            <a class="btn btn-primary" style="float:left" asp-area="" asp-page="Forms/CustomPizza">Try Now&#128523;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @foreach (var pizza in Model.fakePizzaDB)
+            {
+                var imagePath = "~/images/Pizzas/" + (pizza.ImageTitle + ".png");
+                <div class="col-4 mb-3">
+                    <div class="align-items-center">
+                        <a class="pizza-img" style="width:fit-content" asp-area="" asp-page="Checkout/Checkout"
+                       asp-route-ImageTitle="@pizza.ImageTitle"
+                       asp-route-PizzaPrice="@pizza.FinalPrice"
+                       asp-route-PizzaName="@pizza.PizzaName">
+                            <img src=@imagePath class="w-100 smallImage" asp-append-version="true" />
+                        </a>
+                        <br />
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
